@@ -1,15 +1,20 @@
-from django.shortcuts import render
+#from django.shortcuts import render
+from django.views import generic;
+from .models import Post;
+from django.urls import reverse_lazy
 
 # Create your views here.
 
-class PostListView(ListView):
+class PostListView(generic.ListView):
     """
     View for a Post's list
     """
     model = Post
+    #fields = "__all__"
+    #success_url = reverse_lazy("blog: all")
     
 
-class PostCreateView(CreateView):
+class PostCreateView(generic.CreateView):
     """
     View for a Post's create
     """
@@ -18,14 +23,14 @@ class PostCreateView(CreateView):
     success_url = reverse_lazy("blog: all")
     
 
-class PostDetailView(DetailView):
+class PostDetailView(generic.DetailView):
     """
     View for a Post's details
     """
     model = Post
     
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(generic.UpdateView):
     """
     View for a Post's update
     """
@@ -34,7 +39,7 @@ class PostUpdateView(UpdateView):
     success_url = reverse_lazy("blog: all")
     
 
-class PostDeleteView(UpdateView):
+class PostDeleteView(generic.DeleteView):
     """
     View for a Post's delete
     """
